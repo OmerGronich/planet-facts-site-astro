@@ -1,6 +1,7 @@
 ---
 import Tabs from '../components/Tabs.astro';
 import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
 import data from '../data.json'
 import {tabs} from '../constants';
 let title = 'Frontend Mentor | Planets fact site';
@@ -150,10 +151,11 @@ const stats = [{prop: 'rotation', label: 'ROTATION TIME'}, {prop: 'revolution', 
 </head>
 <body class="layout-grid">
 	<Header />
+	<Sidebar />
 	<Tabs page={page} activeTab={tab} />
 	<section class="hero">
 		<div class="flex-column align-center justify-center">
-			<img class={page + '-img'} src={data[page].images[tab == tabs.structure ? 'structure' : 'overview']}/>
+			<img class={page + '-img'} src={Astro.resolve('../../' + data[page].images[tab == tabs.structure ? 'structure' : 'overview'])}/>
 			{tab === tabs.surface && <img class={page + '-img surface-img'} src={data[page].images[tab]} />}
 		</div>
 	</section>
@@ -177,4 +179,19 @@ const stats = [{prop: 'rotation', label: 'ROTATION TIME'}, {prop: 'revolution', 
 		</ul>
 	</section>
 </body>
+
+<script>
+        const button = document.querySelector("button[data-menu-trigger]");
+        const menu = document.querySelector("nav[data-menu]");
+        button.addEventListener("click",() => {
+              menu.classList.toggle("active");
+			  button.classList.toggle("opacity-0-25");
+
+			  if(menu.classList.contains("active")) {
+				  document.body.style.overflow = 'hidden';
+			  } else {
+				  document.body.style.overflow = 'auto';
+			  }
+        })
+</script>
 </html>

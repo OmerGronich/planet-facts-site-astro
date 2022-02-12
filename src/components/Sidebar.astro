@@ -1,0 +1,117 @@
+---
+import data from '../data.json';
+---
+<style lang="scss">
+    nav {
+        display: none;
+        border-top: 1px solid var(--clr-white-02);
+        min-height: 100vh;
+        height: 100%;
+        overflow: hidden;
+        padding-top: 44rem;
+        padding-bottom: 67rem;
+
+        .planet-page-item {
+
+            &:not(:last-child) {
+                border-bottom: 1rem solid var(--clr-white-02);
+            }
+
+            img {
+                padding-right: 8rem;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                text-transform: uppercase;
+                font-family: var(--ff-spartan);
+                font-weight: bold;
+                font-size: 15rem;
+                height: 100%;
+                flex: 1;
+                padding-bottom: 20rem;
+                padding-top: 20rem;
+            }
+
+               &:first-child a{
+                    padding-top: 0;
+                }
+
+
+
+            .circle {
+            
+                width: 20rem;
+                height: 20rem;
+                border-radius: 50%;
+                margin-right: 25rem;
+            }
+
+            .circle-mercury {
+                background-color: var(--clr-mercury);
+            }
+
+            .circle-venus {
+                background-color: var(--clr-venus);
+            }
+
+            .circle-earth {
+                background-color: var(--clr-earth);
+            }
+
+            .circle-mars {
+                background-color: var(--clr-mars);
+            }
+
+            .circle-jupiter {
+                background-color: var(--clr-jupiter);
+            }
+
+            .circle-saturn {
+                background-color: var(--clr-saturn);
+            }
+
+            .circle-uranus {
+                background-color: var(--clr-uranus);
+            }
+
+            .circle-neptune {
+                background-color: var(--clr-neptune);
+            }
+
+
+
+
+        }
+    }
+
+    nav.active {
+        display: flex;
+        flex: 1;
+        width: 100%;
+
+        ul {
+            width: 100%;
+        }
+    }
+</style>
+<nav class="px-24" data-menu>
+    <ul>
+        {Object.keys(data).map(planet => {
+    
+            return (
+            <li class='planet-page-item flex'>
+                <a class="space-between" href={planet === 'mercury' ? '/' : planet}>
+                    <div class="flex align-center space-between">
+                        <div class={`circle circle-${planet}`}></div>
+                        {planet}
+                    </div>
+                    <img src="/assets/icon-chevron.svg" alt={'go to ' + planet + ' page'}>
+                </a>
+            </li>
+        )
+        })}
+    </ul>
+    
+</nav>
