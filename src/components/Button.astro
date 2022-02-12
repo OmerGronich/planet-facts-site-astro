@@ -1,0 +1,61 @@
+---
+ const { active = false, color = "mercury" } = Astro.props;
+---
+
+<style lang="scss">
+    @import '../styles/base/mixins';
+
+    button {
+        text-transform: uppercase;
+        color: #fff;   
+        font-family: var(--ff-spartan);
+        font-size: var(--fs-xs);
+        font-weight: var(--fw-spartan-bold);
+        letter-spacing: var(--ls-md);
+        line-height: var(--line-height-xs);
+        font-style: normal;
+        padding:  20rem 5rem 20rem 5rem;
+        opacity: 0.2;
+    }
+
+    button[data-active] {
+        border-bottom: 4rem solid;
+        padding-bottom: 16rem;
+        opacity: 1;
+    }
+
+    button[data-color="mercury"] {
+        border-color: var(--clr-mercury);
+    }
+
+     button[data-color="venus"] {
+        border-color: var(--clr-venus);
+    }
+    
+    @include respond(tablet) {
+
+        button {
+            font-size: var(--fs-sm);
+            mix-blend-mode: normal;
+            opacity: 0.2;
+            border: 1px solid #FFFFFF;
+        }
+    
+        button[data-active] {
+            border-bottom: none;
+        }
+
+        button[data-color="mercury"] {
+            
+        }
+
+        button[data-color="venus"] {
+            
+        }
+        
+
+    }
+</style>
+<button data-active={active} data-color={color}>
+    <slot />
+</button>

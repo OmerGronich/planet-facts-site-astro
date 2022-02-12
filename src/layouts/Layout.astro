@@ -1,0 +1,180 @@
+---
+import Tabs from '../components/Tabs.astro';
+import Header from '../components/Header.astro';
+import data from '../data.json'
+import {tabs} from '../constants';
+let title = 'Frontend Mentor | Planets fact site';
+const {page, tab} = Astro.props;
+const stats = [{prop: 'rotation', label: 'ROTATION TIME'}, {prop: 'revolution', label: 'REVOLUTION TIME'}, {prop: 'radius', label: 'RADIUS'}, {prop: 'temperature', label: 'AVERAGE TEMP.'}]
+---
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+
+	<style global lang="scss">
+		@use '../styles/main.scss';
+
+		html {
+			font-size: 6.25%;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+
+		body {
+			font-size: var(--fs-base);
+			background: url(/assets/background-stars.svg), var(--clr-bg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			color: #fff;
+		}
+
+
+		.layout-grid {
+			display: grid;
+			grid-template-areas: "header" "tabs" "hero" "details" "stats"; 
+			grid-template-rows: auto auto 304rem auto auto;
+		}
+
+		.hero {
+			$merucry-img-width: 29.8%;
+
+			&>div {
+				position: relative;
+				width: 100%;
+			}
+
+			grid-area: hero;
+			display: grid;
+			align-items: center;
+			justify-items: center;
+
+			.mercury-img {
+				width: $merucry-img-width;
+			}	
+
+			.mercury-img.surface-img {
+				position: absolute;
+				width: calc(0.56 * $merucry-img-width);
+				bottom: -50%;
+			}
+		}
+
+
+		.details {
+			grid-area: details;
+			font-style: normal;
+			font-weight: normal;
+			font-family: var(--ff-spartan);
+
+			.page-name {
+				font-family: var(--ff-antonio);
+				text-align: center;
+				font-size: var(--fs-lg);		
+				text-transform: uppercase;
+				line-height: 52rem;
+			}
+
+			.page-content {
+				margin-top: 16rem;
+				font-size: var(--fs-xs);
+				line-height: 22rem;
+				text-align: center;
+			}
+
+			.source {
+				margin-top: 32rem;
+				text-align: center;
+				font-size: var(--fs-sm);
+				mix-blend-mode: normal;
+				
+
+				a {
+					display: inline-flex;
+					text-decoration: underline;
+					align-items: center;
+					font-weight: var(--fw-spartan-bold);
+
+					& img {
+						margin-left: 4rem;
+					}
+				}
+			}
+		}
+
+		.stats {
+			grid-area: stats;
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 47rem;
+		
+
+			.stats-list {
+				justify-content: space-between;
+					.stats-item {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						padding: 9rem 24rem 13rem 24rem;
+						border: 1rem solid var(--clr-white-02);
+						flex: 1;
+
+						&:not(:last-child) {
+							margin-bottom: 8rem;
+						}
+
+						&-label {
+							font-size: 8rem;
+							font-family: var(--ff-spartan);
+							text-transform: uppercase;
+							font-weight: bold;
+							opacity: 0.5;
+						}
+
+						&-value {
+							font-family: var(--ff-antonio);
+							font-size: 20rem;
+							letter-spacing: -0.75px;
+						}
+					}
+				}
+		}
+		
+
+		
+	</style>
+
+	<title>{title}</title>
+</head>
+<body class="layout-grid">
+	<Header />
+	<Tabs page={page} activeTab={tab} />
+	<section class="hero">
+		<div class="flex-column align-center justify-center">
+			<img class={page + '-img'} src={data[page].images[tab == tabs.structure ? 'structure' : 'overview']}/>
+			{tab === tabs.surface && <img class={page + '-img surface-img'} src={data[page].images[tab]} />}
+		</div>
+	</section>
+	<section class="details px-24 flex-column">
+		<h2 class="page-name">{data[page].name}</h2>
+		<p class="page-content">{data[page][tab].content}</p>
+		<p class="source">
+			<span class="opacity-0-5">Source :</span> 
+			<a href={data[page][tab].source} target="_blank">
+						<span class="opacity-0-5">Wikipedia</span>			
+						<img src="/assets/icon-source.svg" alt="source">
+			</a>
+		</p>
+	</section>
+	<section class="stats mx-24 my-28">
+		<ul class="stats-list flex-column">
+			{stats.map(stat => (<li class="stats-item">
+					<span class="stats-item-label">{stat.label}</span>
+					<span class="stats-item-value">{data[page][stat.prop]}</span>
+				</li>))}
+		</ul>
+	</section>
+</body>
+</html>

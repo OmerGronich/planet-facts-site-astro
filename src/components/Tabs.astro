@@ -1,0 +1,37 @@
+---
+import Button from '../components/Button.astro';
+import { tabs, Tab } from '../constants';
+const { page = "mercury", activeTab = 'overview' } = Astro.props;
+const isActive = (tab: Tab) => tab === activeTab;
+const getHref = (tab: string) => {
+
+    if(page === 'mercury') {
+        return tab;
+    }
+
+    return `/${page}/${tab === '/' ? '' : tab}`;
+}
+---
+<style lang="scss">
+    nav {
+        border-top: 1px solid var(--clr-white-02);
+        border-bottom: 1px solid var(--clr-white-02);
+    }
+</style>
+<nav class="tabs flex space-between align-center px-24">
+    <Button color={page} active={isActive('overview')}>
+        <a href={getHref(tabs.overview)}>
+            OVERVIEW
+        </a>
+    </Button>
+    <Button color={page} active={isActive('structure')}>
+        <a href={getHref(tabs.structure)}>
+            STRUCTURE
+        </a>
+    </Button>
+    <Button color={page} active={isActive('surface')}>
+        <a href={getHref(tabs.surface)}>
+            SURFACE
+        </a>
+    </Button>
+</nav>

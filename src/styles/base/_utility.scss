@@ -1,0 +1,92 @@
+.h1 {
+    font-size: 28rem;
+    font-family: var(--ff-antonio);
+    font-weight: var(--fw-antonio-medium);
+    line-height: 36rem;
+    letter-spacing: -1.05rem;
+    text-transform: uppercase;
+}
+
+.h2 {
+    font-size: var(--fs-lg);
+    font-family: var(--ff-antonio);
+    font-weight: var(--fw-antonio-medium);
+    line-height: var(--line-height-lg);
+    letter-spacing: var(--ls-xs);
+}
+
+.h3 {
+    font-size: var(--fs-sm);
+    font-family: var(--ff-spartan);
+    font-weight: var(--fw-spartan-bold);
+    line-height: var(--line-height-sm);
+    letter-spacing: var(--ls-lg);
+}
+
+.h4 {
+    font-size: var(--fs-xs);
+    font-family: var(--ff-spartan);
+    font-weight: var(--fw-spartan-bold);
+    line-height: var(--line-height-sm);
+    letter-spacing: var(--ls-sm);
+}
+
+.p {
+    font-size: var(--fs-base);
+    font-family: var(--ff-spartan);
+    font-weight: var(--fw-spartan-regular);
+    line-height: var(--line-height-sm);
+}
+
+
+.px-24 {
+    padding-left: 24rem;
+    padding-right: 24rem;
+}
+
+
+.mx-24 {
+    margin-left: 24rem;
+    margin-right: 24rem;
+}
+
+.my-16 {
+    margin-top: 16rem;
+    margin-bottom: 16rem;
+}
+.my-28 {
+    margin-top: 28rem;
+    margin-bottom: 28rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+.space-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+.opacity-0-5 {
+    opacity: 0.5;
+}
+
+.opacity-0-2 {
+    opacity: 0.2;
+}
+
